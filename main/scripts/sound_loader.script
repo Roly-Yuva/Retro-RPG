@@ -1,0 +1,15 @@
+function init(self)
+	msg.post("#", "play", {sound = "title_song", go = "main_songs"})
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("play") then
+		sound.play("/" .. message.go .. "#" .. message.sound)
+	elseif message_id == hash("stop") then
+		sound.stop("/" .. message.go .. "#" .. message.sound)
+	elseif message_id == hash("pause") then
+		sound.pause("/" .. message.go .. "#" .. message.sound, true)
+	elseif message_id == hash("unpause") then
+		sound.pause("/" .. message.go .. "#" .. message.sound, false)
+	end
+end
